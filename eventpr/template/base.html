@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+
+        {% endblock %}
+    </title>
+    <!-- CDNS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <link  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <style>
+        /* Custom Navbar Styles */
+        .navbar {
+            background-color: #16ecde; /* Set background color */
+            border-radius: 0; /* Remove border radius */
+            border: none; /* Remove border */
+        }
+
+        .navbar-brand {
+            color: #e10d10; /* Set brand text color */
+            font-size: 25px;
+            font-family: 'Arial Narrow Bold', sans-serif; /* Change font family */
+            text-transform: uppercase; /* Convert text to uppercase */
+        }
+
+        .navbar-nav > li > a {
+            color: #d7940e; /* Set nav links text color */
+            font-size: 18px;
+            font-weight: bold;
+            text-transform: uppercase;
+            padding: 15px 20px; /* Add padding */
+        }
+
+        .navbar-nav > li > a:hover,
+        .navbar-nav > li > a:focus {
+            background-color: #2c3e50; /* Change background color on hover */
+        }
+
+        /* Responsive Navbar */
+        @media (max-width: 767px) {
+            .navbar-nav > li > a {
+                padding: 10px 15px; /* Adjust padding for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- navbar start -->
+    <nav class="navbar navbar-bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">DQ Events</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="{% url 'index' %}">Home</a></li>
+                    <li><a href="{% url 'about' %}">About</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'events' %}">Events</a></li>
+                    <li><a href="{% url 'booking' %}">Booking</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+                    <h3>{{user.username}}</h3>
+                    {% else %}
+                    <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                    <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {%block content%}
+
+    {% endblock %}
+
+</body>
+</html>

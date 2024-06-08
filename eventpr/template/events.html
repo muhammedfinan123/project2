@@ -1,0 +1,27 @@
+{% extends 'base.html ' %}
+{% load static %}
+{%block title%}
+Events
+{% endblock %}
+{%block content%}
+    
+
+<h2 class="text-center">DQ event's</h2>
+<h3 class="text-center">best option for your event's join with us...!!</h3>
+<div class="container">
+
+
+{% for i in eve %}
+<div class="card text-center" style="width: 18rem; display:inline-block;margin: 20px;">
+<img src="{{i.image.url}}" class="card-img-top" alt="..."
+height="150px" width="200px">
+<div class="card-body">
+<h5 class="card-title">{{i.name}}</h5>
+<p class="card-text">{{i.description}}</p>
+</div>
+</div>
+{% endfor %}
+
+
+</div>
+{% endblock %}
